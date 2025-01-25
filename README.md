@@ -86,7 +86,7 @@ The project includes performance evaluations for different model configurations:
   
   15 Epochs:
   - ![F1-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_f1_confidence_curve.png)
-  - ![Precision-Recall Curve](docs/images/metrics/15_epoch_yolov10_B_precision_recall.png)
+  - ![Precision-Recall Curve](docs/images/metrics/15_epoch_yolov10_B_precision_recall_curve.png)
   - ![Recall-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_recall_confidence_curve.png)
   - ![Precision-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_precision_confidence_curve.png)
   - ![Confusion Matrix](docs/images/metrics/15_epoch_yolov10_B_confusion_matrix.png)
