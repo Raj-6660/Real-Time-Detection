@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+
+<body>
+    <div class="split left">
+        <div class="centered">
+            <h2>Upload Image</h2>
+            <label for="modelSelector">Choose a model:
+                <select name="modelSelector" id="modelSelector">
+                    {% for model in models %}
+                    <option value="{{model}}" SELECTED>{{model}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <form id="upload-form" action="/object-detection/" method="post" enctype="multipart/form-data">
+                <label for="inputForUserMedia">Select media file:
+                    <input type="file" id="inputForUserMedia" name="identify_media" accept="image/*,video/*" required>
+                    <br><br>
+                </label>
+                <input id="upload" type="submit" value="Upload and Apply Detection">
+            </form>
+            <br>
+            {% if filename %}
+            <video id="vid_result" alt="Processed Video" controls>
+                <source src="{{ url_for('processed_video', filename=filename) }}" type="video/mp4">
+                </source>
+            </video>
+            {% endif %}
+            <img id="img_result" src="" alt="Processed Image" hidden />
+        </div>
+    </div>
+    <div class="split right">
+        <div class="centered">
+            <h2>Perform Live Detection</h2>
+            <button onclick="toggleWebcam()">Toggle Webcam</button>
+            <div class="media-container">
+                <img id="webcam_result" alt="" hidden />
+                <video id="webcam_stream" alt="" hidden inline></video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var STREAMING = false;
+        // Start webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                const webcam_el = document.getElementById("webcam_stream");
+                webcam_el.srcObject = stream;
+            })
+            .catch(function (err) {
+                console.log("An error occurred: " + err);
+            });
+
+        // Toggle webcam on/off
+        function toggleWebcam() {
+            const webcam_raw = document.getElementById("webcam_stream");
+            const webcam_res = document.getElementById("webcam_result");
+            if (webcam_raw.paused) {
+                [webcam_res.hidden, webcam_raw.hidden] = [false, false];
+                webcam_raw.play();
+                STREAMING = true;
+                startStreaming(webcam_raw, "webcam_result");
+            } else {
+                [webcam_res.hidden, webcam_raw.hidden] = [true, true];
+                STREAMING = false;
+                webcam_raw.pause();
+            }
+        }
+
+        // For form submit 
+        document.getElementById("upload-form").onsubmit = async function (event) {
+            event.preventDefault();
+
+            const vid_result = document.getElementById("vid_result")
+            const img_result = document.getElementById("img_result")
+
+            const formData = new FormData(event.target);
+            switch (formData.get("identify_media").type.split("/")[0]) {
+                case "video":
+                    await sendFrame(formData, null)
+                    if (vid_result) vid_result.hidden = false
+                    if (img_result) img_result.hidden = true
+                    break;
+                default:
+                    await sendFrame(formData, "img_result")
+                    if (vid_result) vid_result.hidden = true
+                    if (img_result) img_result.hidden = false
+                    break;
+            }
+        };
+
+        // Helper functions
+        async function startStreaming(video, outputElementId) {
+            while (STREAMING) {
+                try {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob(function (blob) {
+                        const formData = new FormData();
+                        formData.append("identify_media", blob, "frame.jpg");
+                        sendFrame(formData, outputElementId);
+                    }, "image/jpeg");
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                } catch (error) {
+                    STREAMING = false;
+                    console.error('Error capturing or displaying frame:', error);
+                }
+            }
+        }
+
+        async function sendFrame(formData, resultElemId) {
+            const MODEL_NAME = document.getElementById("modelSelector").value;
+            const url = `/object-detection/?model=${MODEL_NAME}`
+            fetch(url, {
+                method: "POST",
+                body: formData
+            })
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                        return Promise.resolve();
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    if (blob && resultElemId) {
+                        const el = document.getElementById(resultElemId);
+                        if (el) {
+                            const blobUrl = URL.createObjectURL(blob);
+                            el.src = blobUrl;
+                        }
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+
+</html>

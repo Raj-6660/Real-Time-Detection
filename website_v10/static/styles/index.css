@@ -1,0 +1,152 @@
+body {
+    background-image: url('/static/images/land.jpg');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    /* Semi-transparent white overlay */
+    z-index: -1;
+    /* Place it behind all other content */
+}
+
+.split {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+/* .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+} */
+
+
+#webcam_stream {
+    border: 2px solid black;
+}
+
+
+button {
+    background-color: violet;
+    margin-top: 10px;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: palevioletred;
+    transform: scale(1.05);
+}
+
+#upload {
+    background-color: rgb(215, 10, 215);
+    border-radius: 5px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#upload:hover {
+    background-color: blueviolet;
+    transform: scale(1.05);
+}
+
+h2 {
+    font-size: 30px;
+}
+
+#inputForUserMedia {
+    font-size: 16px;
+}
+
+#modelSelector {
+    font-size: 16px;
+    margin-bottom: 10%;
+}
+
+label[for="inputForUserMedia"] {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+label[for="modelSelector"] {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+select[name="modelSelector"] {
+    font-size: 16px;
+}
+
+.right .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.left .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* .right .media-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+} */
+
+.right img,
+.right video {
+    display: flex;
+    flex-direction: column;
+    max-height: 30%;
+}
+
+.left img,
+.left video {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
