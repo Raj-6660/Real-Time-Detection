@@ -200,7 +200,7 @@ The notebook format allows for efficient development, enabling partial execution
 - Environmental factors like lighting conditions and weather can affect detection accuracy
 - Detection performance may vary based on device capabilities
 - Model accuracy depends on the quality and diversity of training data
-- Mobile devices may experience reduced performance due to limited computational resources
+- Mobile devices may experience reduced performance due to limited computational resources (ex: laptops)
 
 ## Acknowledgments
 
