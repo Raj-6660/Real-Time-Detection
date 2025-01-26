@@ -105,6 +105,7 @@ The project includes performance evaluations for different model configurations:
   - 16GB+ RAM (Tested on 13GB and 16GB)
   - GPU with 16GB VRAM (Tested on T4-16GB)
   - 10th generation processor or newer (Tested on 13th gen i7)
+  - 4th generation processor or newer for Ryzen Series Processor (Tested on 4th gen (4800h) ryzen 7)
   - CUDA-compatible GPU recommended
 
 ### Software Requirements
