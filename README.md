@@ -214,7 +214,7 @@ The notebook format allows for efficient development, enabling partial execution
 
 ## Built by
 
-* [Rajnath Singh] (EPFPhmiw47mosLJR)
+* [Rajnath Singh] (https://github.com/EPFPhmiw47mosLJR)
 
-* [Rajarshya Singh Mahal] (Raj-6660)
+* [Rajarshya Singh Mahal] (https://github.com/Raj-6660)
 
