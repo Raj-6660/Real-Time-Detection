@@ -211,3 +211,10 @@ The notebook format allows for efficient development, enabling partial execution
 - [Flask](https://flask.palletsprojects.com/) for the web framework
 - [Roboflow](https://roboflow.com/) for dataset management and annotation tools
 - [Kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals) for the animal image dataset
+
+## Built by
+
+* [Rajnath Singh] (EPFPhmiw47mosLJR)
+
+* [Rajarshya Singh Mahal] (Raj-6660)
+
