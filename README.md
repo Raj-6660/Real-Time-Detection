@@ -1,6 +1,7 @@
-# Real-Time Animal Detection
+# Real-Time Animal Detection and Classification System
 
-A sophisticated AI-based system developed to detect animals in real-time through image or video input. This project combines the power of YOLOv10 (You Only Look Once) object detection with a modern web interface, making it accessible for various applications including wildlife monitoring, security, and research.
+A powerful AI-based web application built to detect and classify animals in real-time across 78 species through image, video, or live webcam input.
+This system combines YOLOv10 (You Only Look Once) object detection with a Flask backend and a web interface, designed primarily for livestock protection and wildlife monitoring.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -32,7 +33,7 @@ This project was developed as part of a Python with Artificial Intelligence cour
 - **Modern Frontend**: Built with HTML, CSS, and JavaScript for seamless user interaction
 - **Real-time Processing**: Capable of processing both uploaded media and live webcam feeds
 
-The system is designed to operate in diverse environments with minimal human intervention, making it suitable for wildlife monitoring, research, and security applications.
+The system is designed to operate in diverse environments with minimal human intervention, making it suitable for livestock protection.
 
 ## System Architecture
 
