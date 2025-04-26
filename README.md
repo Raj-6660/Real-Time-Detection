@@ -21,67 +21,79 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Training Custom Models](#training-custom-models)
+- [Future Scope](#future-scope)
 - [Known Limitations](#known-limitations)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
-This project was developed as part of a Python with Artificial Intelligence course, demonstrating the practical application of modern AI techniques in real-world scenarios. The system leverages:
+This project demonstrates the application of AI techniques to detect and classify animals in real-time, intended for scenarios such as:
+- Livestock farm perimeter monitoring
+- Early identification of wildlife near human settlements
 
-- **YOLOv10**: A state-of-the-art object detection model, custom trained for animal detection
-- **Flask Backend**: A lightweight Python web framework enabling efficient integration of the ML model
-- **Modern Frontend**: Built with HTML, CSS, and JavaScript for seamless user interaction
-- **Real-time Processing**: Capable of processing both uploaded media and live webcam feeds
+Built using:
 
-The system is designed to operate in diverse environments with minimal human intervention, making it suitable for livestock protection.
+- **YOLOv10**: A state-of-the-art object detection model, custom trained on 78 animal classes
+- **Flask Backend**: For lightweight server-side management.
+- **Frontend**: **HTML**, **CSS**, and **JavaScript** for seamless user interaction
+- **Real-time Processing**: Live webcam feed and uploaded media detection
+
+The system is highly modular and adaptable for future hardware integrations.
 
 ## System Architecture
 
-The application is built with a modular architecture focusing on maintainability and scalability:
+The application is built around modular, scalable components.
 
 ### Main Application Structure
 ![Main Application Structure](docs/images/architecture/main_application.png)
-The main application orchestrates the interaction between different components, handling user requests and coordinating the detection process.
+The main Flask server coordinates between the frontend interface and the YOLOv10 object detection engine.
 
 ### Flask Initialization
 ![Flask Setup](docs/images/architecture/flask_initialization.png)
-The Flask application setup includes route definitions and configuration management for handling web requests and serving responses.
+Includes route definitions for uploading media, starting live detection, and serving processed output.
 
 ### Detection Class
 ![Detection Class](docs/images/architecture/detection_class.png)
-The core detection class encapsulates the YOLOv10 model functionality, providing a clean interface for object detection operations.
+Handles model loading, image pre-processing, running inference, and output post-processing.
 
 ### Detection Methods
 ![Detection Methods](docs/images/architecture/detection_methods.png)
-Implementation of detection methods for both image and video processing, including real-time detection capabilities.
+Supports:
+
+- Image Upload Detection
+
+- Video Upload Detection
+
+- Live Webcam Feed Detection
 
 ## Features
 
-- Real-time animal detection through webcam feed
-- Support for image and video file uploads
+- Real-time animal detection and classification
+- Support for webcam, image and video input.
 - Multiple YOLOv10 model variants:
   - Pre-trained models (yolov10n/s/m/b/l/x)
   - Custom-trained models (30-epoch and 15/20-epoch variants)
-- Interactive web interface with split view for:
+- Split view web interface for:
   - File upload and processing
   - Live webcam detection
-- Modern UI with responsive design
+- Model selection dropdown for easy switiching.
+- Future-ready for hardware integration.
 
 ## Performance Metrics
 
-The project includes performance evaluations for different model configurations:
+Custom model evaluations based on YOLOv10 variants:
 
-### Custom Model based on YOLOv10-N (30 Epochs)
+### YOLOv10-N (30 Epochs)
 - Optimized for speed while maintaining acceptable accuracy
-- Suitable for real-time applications
-- Performance metrics:
+- Focused on real-time responsiveness
+- Performance visualizations:
   - ![F1-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_f1_confidence_curve.png)
   - ![Precision-Recall Curve](docs/images/metrics/30_epoch_yolov10_N_precision_recall_curve.png)
   - ![Recall-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_recall_confidence_curve.png)
   - ![Precision-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_precision_confidence_curve.png)
   - ![Confusion Matrix](docs/images/metrics/30_epoch_yolov10_N_confusion_matrix.png)
 
-### Custom Model based on YOLOv10-B (15 & 20 Epochs)
+### YOLOv10-B (15 & 20 Epochs)
 - Balanced model offering good accuracy-speed trade-off
 - Two training configurations for comparison:
   
@@ -101,20 +113,18 @@ The project includes performance evaluations for different model configurations:
 
 ## System Requirements
 
-### Hardware Requirements
-- **For Training**:
-  - 16GB+ RAM (Tested on 13GB and 16GB)
-  - GPU with 16GB VRAM (Tested on T4-16GB)
-  - 10th generation processor or newer (Tested on 13th gen i7)
-  - 4th generation processor or newer for Ryzen Series Processor (Tested on 4th gen (4800h) ryzen 7)
-  - Minimum 16 core processor (Originally used 8 core processor due to resource constraints)
+### Hardware
+- **Training**:
+  - 16GB+ RAM
+  - GPU with 16GB+ VRAM 
+  - 10th Gen Intel or 4th Gen Ryzen CPU and above.
   - CUDA-compatible GPU recommended
 
-### Software Requirements
-- **For Deployment**:
-  - Ubuntu/Ubuntu on WSL2 (recommended for native CUDA support)
+### Software
+- **Deployment**:
+  - Ubuntu or WSL2 (recommended for CUDA)
   - CUDA libraries for NVIDIA GPU support
-  - Python 3.8+ with pip
+  - Python 3.8+
   - Modern web browser
 - **For Development**:
   - IDE with Python and HTML/CSS/JS support (e.g., VSCode with extensions)
@@ -137,19 +147,19 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. Install dependencies:
+3. Install required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-1. Start the Flask application:
+1. Start the Flask server:
 ```bash
 python website_v10/app.py
 ```
 
-2. Open web browser and navigate to:
+2. Open web browser and access the application at:
 ```
 http://localhost:8000
 ```
@@ -157,7 +167,7 @@ http://localhost:8000
 3. Use the application:
    - Left panel: Upload images or videos for detection
    - Right panel: Use your webcam for real-time detection
-   - Select different models using the dropdown menu
+   - Drpdown Menu: Switch between available YOLOv10 models
 
 ## Project Structure
 
@@ -173,9 +183,9 @@ realtime-animal-detection/
 
 ## Training Custom Models
 
-The project includes a Jupyter notebook (`ANIMAL_DETECTION_YOLOv10.ipynb`) for training custom YOLOv10 models. The training process involves:
+The project includes a Jupyter notebook (`ANIMAL_DETECTION_YOLOv10.ipynb`) that details the full training pipeline.
 
-1. **Data Preparation**:
+1. **Dataset Preparation**:
    - Using Roboflow for image annotation and dataset management
    - Manual annotation of animal bounding boxes
    - Dataset export in YOLOv8 format
@@ -191,19 +201,25 @@ The project includes a Jupyter notebook (`ANIMAL_DETECTION_YOLOv10.ipynb`) for t
    - Focus on balancing accuracy and performance
 
 4. **Challenges Addressed**:
-   - Environmental factors (lighting, weather conditions)
    - Data quality and annotation accuracy
    - Bias management in training data
    - Device limitations and optimization
 
 The notebook format allows for efficient development, enabling partial execution and state preservation during the training process.
 
+## Future Scope
+- Integration with real-world IoT hardware like smart surveillance cameras and autonomous drones
+- Automatic threat classification (e.g., predator vs harmless)
+- Mobile device optimization for farm owners
+- Extended dataset for rare/localized wildlife species
+
 ## Known Limitations
 
-- Environmental factors like lighting conditions and weather can affect detection accuracy
-- Detection performance may vary based on device capabilities
-- Model accuracy depends on the quality and diversity of training data
-- Mobile devices may experience reduced performance due to limited computational resources (ex: laptops)
+- Detection accuracy may vary with poor lighting/weather conditions
+- Webcam latency on low-resource devices
+- Current version identifies species, not threat levels
+- Mobile devices may experience reduced performance due to limited computational resources
+- Requires a stable local server setup for best real-time performance
 
 ## Acknowledgments
 
