@@ -16,7 +16,7 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
   - [Software Requirements](#software-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Problems Faced And Solutions](#problems-faced-and-solutions)
+- [Problems Faced During Development](#problems-faced-during-development)
 - [Why Python 3.10.11 Was Chosen](#why-python-3.10.11-was-chosen)
 - [Visual Studio Build Tools](#visual-studio-build-tools)
 - [Final Working Stack](#final-working-stack)
@@ -155,13 +155,15 @@ realtime-animal-detection/
 └── requirements.txt        # Python dependencies
 ```
 
-## Probelms Faced And Solutions
+## Problems Faced During Development
 
-Problem | Cause | Solution
-Installation failure for torch / ultralytics | C++ compiler missing | Installed Visual Studio Build Tools
-Microsoft Visual C++ 14.0+ required error | Missing build environment | Installed Build Tools 2022
-OpenCV installation errors | Pip outdated or Python mismatch | Upgraded pip and used Python 3.10.11
-Certificate Errors (ssl.SSLError) | Outdated SSL certificates | Upgraded certifi package
+| **Problem**                                | **Cause**                                  | **Solution**                                                                 |
+|--------------------------------------------|--------------------------------------------|-----------------------------------------------------------------------|
+| **Installation failure for torch / ultralytics** | C++ compiler missing                       | Installed Visual Studio Build Tools, Microsoft Visual C++ 14.0+ required error |
+| **Missing build environment**             | Missing build tools                        | Installed Build Tools 2022                                                     |
+| **OpenCV installation errors**            | Pip outdated or Python mismatch            | Upgraded pip and used Python 3.10.11                                            |
+| **Certificate Errors (ssl.SSLError)**     | Outdated SSL certificates                  | Upgraded certifi package                                                       |
+
 
 ## Why Python 3.10.11 Was Chosen
 
