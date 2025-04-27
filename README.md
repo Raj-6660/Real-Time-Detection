@@ -11,19 +11,25 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
   - [Detection Class](#detection-class)
   - [Detection Methods](#detection-methods)
 - [Features](#features)
-- [Performance Metrics](#performance-metrics)
-  - [Custom Model based on YOLOv10-N (30 Epochs)](#custom-model-based-on-yolov10-n-30-epochs)
-  - [Custom Model based on YOLOv10-B (15 & 20 Epochs)](#custom-model-based-on-yolov10-b-15--20-epochs)
 - [System Requirements](#system-requirements)
   - [Hardware Requirements](#hardware-requirements)
   - [Software Requirements](#software-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Problems Faced and Solutions](#problems-faced-and-solutions)
+- [Why Python 3.10.11 Was Chosen](#why-python-3.10.11-was-chosen)
+- [Visual Studio Build Tools — Why Needed?](#visual-studio-build-tools-—-why-needed?)
+- [Final Working Stack](#final-working-stack)
+- [Performance Metrics](#performance-metrics)
+  - [Custom Model based on YOLOv10-N (30 Epochs)](#custom-model-based-on-yolov10-n-30-epochs)
+  - [Custom Model based on YOLOv10-B (15 & 20 Epochs)](#custom-model-based-on-yolov10-b-15--20-epochs)
 - [Project Structure](#project-structure)
 - [Training Custom Models](#training-custom-models)
 - [Future Scope](#future-scope)
 - [Known Limitations](#known-limitations)
 - [Acknowledgments](#acknowledgments)
+- [Screenshots](#screenshots)
+- [Final Notice](#final-notice)
 
 ## Introduction
 
@@ -79,38 +85,6 @@ Supports:
 - Model selection dropdown for easy switiching.
 - Future-ready for hardware integration.
 
-## Performance Metrics
-
-Custom model evaluations based on YOLOv10 variants:
-
-### YOLOv10-N (30 Epochs)
-- Optimized for speed while maintaining acceptable accuracy
-- Focused on real-time responsiveness
-- Performance visualizations:
-  - ![F1-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_f1_confidence_curve.png)
-  - ![Precision-Recall Curve](docs/images/metrics/30_epoch_yolov10_N_precision_recall_curve.png)
-  - ![Recall-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_recall_confidence_curve.png)
-  - ![Precision-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_precision_confidence_curve.png)
-  - ![Confusion Matrix](docs/images/metrics/30_epoch_yolov10_N_confusion_matrix.png)
-
-### YOLOv10-B (15 & 20 Epochs)
-- Balanced model offering good accuracy-speed trade-off
-- Two training configurations for comparison:
-  
-  15 Epochs:
-  - ![F1-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_f1_confidence_curve.png)
-  - ![Precision-Recall Curve](docs/images/metrics/15_epoch_yolov10_B_precision_recall_curve.png)
-  - ![Recall-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_recall_confidence_curve.png)
-  - ![Precision-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_precision_confidence_curve.png)
-  - ![Confusion Matrix](docs/images/metrics/15_epoch_yolov10_B_confusion_matrix.png)
-  
-  20 Epochs:
-  - ![F1-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_f1_confidence_curve.png)
-  - ![Precision-Recall Curve](docs/images/metrics/20_epoch_yolov10_B_precision_recall_curve.png)
-  - ![Recall-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_recall_confidence_curve.png)
-  - ![Precision-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_precision_confidence_curve.png)
-  - ![Confusion Matrix](docs/images/metrics/20_epoch_yolov10_B_confusion_matrix.png)
-
 ## System Requirements
 
 ### Hardware
@@ -129,7 +103,7 @@ Custom model evaluations based on YOLOv10 variants:
 - **For Development**:
   - IDE with Python and HTML/CSS/JS support (e.g., VSCode with extensions)
   - Git for version control
-
+ 
 ## Installation
 
 1. Clone the repository:
@@ -169,7 +143,7 @@ http://localhost:8000
    - Right panel: Use your webcam for real-time detection
    - Drpdown Menu: Switch between available YOLOv10 models
 
-## Project Structure
+### Project Structure
 
 ```
 realtime-animal-detection/
@@ -180,6 +154,80 @@ realtime-animal-detection/
 ├── weights/                # YOLOv10 model weights
 └── requirements.txt        # Python dependencies
 ```
+
+## Probelms Faced and Solutions
+
+Problem | Cause | Solution
+Installation failure for torch / ultralytics | C++ compiler missing | Installed Visual Studio Build Tools
+Microsoft Visual C++ 14.0+ required error | Missing build environment | Installed Build Tools 2022
+OpenCV installation errors | Pip outdated or Python mismatch | Upgraded pip and used Python 3.10.11
+Certificate Errors (ssl.SSLError) | Outdated SSL certificates | Upgraded certifi package
+
+## Why Python 3.10.11 Was Chosen
+
+### Python Version:
+
+After testing multiple versions, Python 3.10.11 was selected because:
+
+- Compatible with most libraries used (like ultralytics, torch, opencv, flask, etc.)
+- No major deprecation warnings.
+- Stable support for CPU-only and GPU environments (optional).
+
+### Why Python 3.11+ was avoided initially:
+
+- Some libraries like torch and ultralytics had compatibility issues or needed nightly builds in Python 3.11+.
+- Installation errors or missing wheels were common.
+
+## Visual Studio Build Tools — Why Needed?
+
+- Many ML/DL libraries (like torch, ultralytics, opencv) contain C/C++ extensions.
+- These extensions need to be compiled locally if precompiled binaries are not available for your system.
+- Visual Studio Build Tools provides:
+  - Microsoft C++ Build Environment
+  - Required compilers and SDKs
+  - Smooth installation of PyTorch, OpenCV, and other heavy libraries without crash.
+ 
+## Final Working Stack
+
+- Python: 3.10.11 (Stable, Compatible)
+- pip: 24.0 (Latest, faster resolver)
+- IDE: VS Code / PyCharm (optional)
+- Compiler: Visual Studio Build Tools 2022 (latest at time of writing)
+- Libraries Installed:
+  - (All listed properly in requirements.txt)
+
+## Performance Metrics
+
+Custom model evaluations based on YOLOv10 variants:
+
+### YOLOv10-N (30 Epochs)
+- Optimized for speed while maintaining acceptable accuracy
+- Focused on real-time responsiveness
+- Performance visualizations:
+  - ![F1-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_f1_confidence_curve.png)
+  - ![Precision-Recall Curve](docs/images/metrics/30_epoch_yolov10_N_precision_recall_curve.png)
+  - ![Recall-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_recall_confidence_curve.png)
+  - ![Precision-Confidence Curve](docs/images/metrics/30_epoch_yolov10_N_precision_confidence_curve.png)
+  - ![Confusion Matrix](docs/images/metrics/30_epoch_yolov10_N_confusion_matrix.png)
+
+### YOLOv10-B (15 & 20 Epochs)
+- Balanced model offering good accuracy-speed trade-off
+- Two training configurations for comparison:
+  
+  15 Epochs:
+  - ![F1-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_f1_confidence_curve.png)
+  - ![Precision-Recall Curve](docs/images/metrics/15_epoch_yolov10_B_precision_recall_curve.png)
+  - ![Recall-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_recall_confidence_curve.png)
+  - ![Precision-Confidence Curve](docs/images/metrics/15_epoch_yolov10_B_precision_confidence_curve.png)
+  - ![Confusion Matrix](docs/images/metrics/15_epoch_yolov10_B_confusion_matrix.png)
+  
+  20 Epochs:
+  - ![F1-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_f1_confidence_curve.png)
+  - ![Precision-Recall Curve](docs/images/metrics/20_epoch_yolov10_B_precision_recall_curve.png)
+  - ![Recall-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_recall_confidence_curve.png)
+  - ![Precision-Confidence Curve](docs/images/metrics/20_epoch_yolov10_B_precision_confidence_curve.png)
+  - ![Confusion Matrix](docs/images/metrics/20_epoch_yolov10_B_confusion_matrix.png)
+
 
 ## Training Custom Models
 
@@ -229,9 +277,8 @@ The notebook format allows for efficient development, enabling partial execution
 - [Roboflow](https://roboflow.com/) for dataset management and annotation tools
 - [Kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals) for the animal image dataset
 
-## Built by
+## Screenshots
 
-* [Rajnath Singh] (https://github.com/EPFPhmiw47mosLJR)
-
-* [Rajarshya Singh Mahal] (https://github.com/Raj-6660)
+## Final Notice
+**<mark>This setup guide documents real-world issues faced and solved during development to ensure a smoother onboarding experience for new developers and recruiters evaluating the project.</mark>**
 
