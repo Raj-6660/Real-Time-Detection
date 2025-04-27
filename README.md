@@ -90,16 +90,15 @@ Supports:
 ### Hardware
 - **Training**:
   - 16GB+ RAM
-  - GPU with 16GB+ VRAM 
+  - GPU with 16GB+ VRAM (Google Colab T4 GPU Recommended)
   - 10th Gen Intel or 4th Gen Ryzen CPU and above.
-  - CUDA-compatible GPU recommended
+  - CUDA-compatible GPU recommended (if you want to use laptop GPU for training)
+  - Ubuntu or WSL2 (recommended for CUDA)
 
 ### Software
 - **Deployment**:
-  - Ubuntu or WSL2 (recommended for CUDA)
-  - CUDA libraries for NVIDIA GPU support
-  - Python 3.8+
-  - Modern web browser
+  - CUDA libraries for NVIDIA GPU support (if using WSL2/Ubuntu for GPU usage)
+  - Python >=3.8 <3.11
 
 - **For Development**:
   - IDE with Python and HTML/CSS/JS support (e.g., VSCode with extensions)
@@ -193,7 +192,7 @@ After testing multiple versions, Python 3.10.11 was selected because:
 ## Final Working Stack
 
 - Python: 3.10.11 (Stable, Compatible)
-- pip: 24.0 (Latest, faster resolver)
+- pip: 25.0 (Latest, faster resolver)
 - IDE: VS Code / PyCharm (optional)
 - Compiler: Visual Studio Build Tools 2022 (latest at time of writing)
 - Libraries Installed:
