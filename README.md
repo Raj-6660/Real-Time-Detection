@@ -18,7 +18,7 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
 - [Usage](#usage)
 - [Problems Faced and Solutions](#problems-faced-and-solutions)
 - [Why Python 3.10.11 Was Chosen](#why-python-3.10.11-was-chosen)
-- [Visual Studio Build Tools — Why Needed?](#visual-studio-build-tools-—-why-needed?)
+- [Visual Studio Build Tools](#visual-studio-build-tools)
 - [Final Working Stack](#final-working-stack)
 - [Performance Metrics](#performance-metrics)
   - [Custom Model based on YOLOv10-N (30 Epochs)](#custom-model-based-on-yolov10-n-30-epochs)
@@ -178,7 +178,7 @@ After testing multiple versions, Python 3.10.11 was selected because:
 - Some libraries like torch and ultralytics had compatibility issues or needed nightly builds in Python 3.11+.
 - Installation errors or missing wheels were common.
 
-## Visual Studio Build Tools — Why Needed?
+## Visual Studio Build Tools
 
 - Many ML/DL libraries (like torch, ultralytics, opencv) contain C/C++ extensions.
 - These extensions need to be compiled locally if precompiled binaries are not available for your system.
