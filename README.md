@@ -196,7 +196,7 @@ After testing multiple versions, Python 3.10.11 was selected because:
 - IDE: VS Code / PyCharm (optional)
 - Compiler: Visual Studio Build Tools 2022 (latest at time of writing)
 - Libraries Installed:
-  - (All listed properly in requirements.txt)
+  - (All listed properly in [requirements.txt](website_v10/requirements.txt))
 
 ## Performance Metrics
 
