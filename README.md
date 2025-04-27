@@ -16,7 +16,7 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
   - [Software Requirements](#software-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Problems Faced and Solutions](#problems-faced-and-solutions)
+- [Problems Faced And Solutions](#problems-faced-and-solutions)
 - [Why Python 3.10.11 Was Chosen](#why-python-3.10.11-was-chosen)
 - [Visual Studio Build Tools](#visual-studio-build-tools)
 - [Final Working Stack](#final-working-stack)
@@ -155,7 +155,7 @@ realtime-animal-detection/
 └── requirements.txt        # Python dependencies
 ```
 
-## Probelms Faced and Solutions
+## Probelms Faced And Solutions
 
 Problem | Cause | Solution
 Installation failure for torch / ultralytics | C++ compiler missing | Installed Visual Studio Build Tools
