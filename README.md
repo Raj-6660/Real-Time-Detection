@@ -100,6 +100,7 @@ Supports:
   - CUDA libraries for NVIDIA GPU support
   - Python 3.8+
   - Modern web browser
+
 - **For Development**:
   - IDE with Python and HTML/CSS/JS support (e.g., VSCode with extensions)
   - Git for version control
