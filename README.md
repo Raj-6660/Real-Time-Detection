@@ -29,6 +29,7 @@ This system combines YOLOv10 (You Only Look Once) object detection with a Flask 
 - [Known Limitations](#known-limitations)
 - [Acknowledgments](#acknowledgments)
 - [Screenshots](#screenshots)
+- [Contributors](#contributors)
 - [Final Notice](#final-notice)
 
 ## Introduction
@@ -280,6 +281,10 @@ The notebook format allows for efficient development, enabling partial execution
 - [Kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals) for the animal image dataset
 
 ## Screenshots
+
+## Contributors
+- [Rajarshya Singh Mahal](https://github.com/Raj-6660)
+- [Rajnath Singh](https://github.com/EPFPhmiw47mosLJR)
 
 ## Final Notice
 **<mark>This setup guide documents real-world issues faced and solved during development to ensure a smoother onboarding experience for new developers and recruiters evaluating the project.</mark>**
