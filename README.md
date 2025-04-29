@@ -283,7 +283,7 @@ The notebook format allows for efficient development, enabling partial execution
 ## Screenshots
 
 ## Contributors
-- [Rajarshya Singh Mahal](https://github.com/Raj-6660)
+- [Rajarshya Singh Mahal (Me)](https://github.com/Raj-6660)
 - [Rajnath Singh](https://github.com/EPFPhmiw47mosLJR)
 
 ## Final Notice
