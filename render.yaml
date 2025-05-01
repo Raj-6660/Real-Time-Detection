@@ -2,8 +2,8 @@ services:
   - type: web
     name: real-time-detection-app
     env: python
-    buildCommand: "pip install -r website/requirements.txt"  # Ensure it points to the correct location of requirements.txt
+    buildCommand: "pip install -r website_v10/requirements.txt"  # Ensure it points to the correct location of requirements.txt
     startCommand: "gunicorn -w 4 -b 0.0.0.0:8000 website.app:app"  # Using Gunicorn to run the app
-    rootDir: website  # Set rootDir to 'website' folder where app.py is located
+    rootDir: website_v10  # Set rootDir to 'website' folder where app.py is located
     plan: free
     region: singapore
