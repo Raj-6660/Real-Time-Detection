@@ -287,7 +287,7 @@ The notebook format allows for efficient development, enabling partial execution
 - ![Screenshot2](docs/images/Screenshots/Screenshot%202025-05-01%20132526.png)
 ### Video Detection
 - ![Screenshot3](docs/images/Screenshots/screen.png)
-### ReaL Time Detection through Laptop Camera
+### ReaL Time Detection through Webcam
 - ![Screenshot4](docs/images/Screenshots/Screenshot%202025-05-01%20135642.png)
   
 
