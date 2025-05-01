@@ -286,7 +286,7 @@ The notebook format allows for efficient development, enabling partial execution
 ### Static Image Detection
 - ![Screenshot2](docs/images/Screenshots/Screenshot%202025-05-01%20132526.png)
 ### Video Detection
-- ![Screenshot3](docs/images/Screenshots/Screenshot%202025-05-01%20133655.png)
+- ![Screenshot3](docs/images/Screenshots/screen.png)
 ### ReaL Time Detection through Laptop Camera
 - ![Screenshot4](docs/images/Screenshots/Screenshot%202025-05-01%20135642.png)
   
