@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: animal-detection-app
+    runtime: python
+    region: singapore
+    plan: free
+    rootDir: website
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
