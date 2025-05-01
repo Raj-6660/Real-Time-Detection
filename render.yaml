@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: animal-detection-app
-    runtime: python
-    region: singapore
+    name: real-time-detection-app
+    env: python
+    buildCommand: "pip install -r website/requirements.txt"  # Ensure it points to the correct location of requirements.txt
+    startCommand: "gunicorn -w 4 -b 0.0.0.0:8000 website.app:app"  # Using Gunicorn to run the app
+    rootDir: website  # Set rootDir to 'website' folder where app.py is located
     plan: free
-    rootDir: website_v10
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    region: singapore
